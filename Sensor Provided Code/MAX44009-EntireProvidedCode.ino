@@ -1,4 +1,4 @@
-#include "MAX44009.h"
+#include "MAX44009.h" //defined within this folder
 
 MAX44009 Lux(0x4A);
 
