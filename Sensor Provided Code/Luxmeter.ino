@@ -1,4 +1,4 @@
-#include <Wire.h>
+#include <Wire.h> //libraries in Arduino
 #include <MAX44009.h>
 
 MAX44009 light;
@@ -19,7 +19,7 @@ void setup()
  
 void loop() 
 {
-	Serial.print("Light (lux):    ");
+	Serial.print("Light (lux):    "); //simple LUX reading
 	Serial.println(light.get_lux());
 	delay(1000);
 }
