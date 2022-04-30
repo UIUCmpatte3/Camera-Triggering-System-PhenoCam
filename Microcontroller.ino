@@ -1,11 +1,11 @@
 #define analogPinForRV    A2   // change to pins you the analog pins are using
 #define analogPinForTMP   A3
 
-#define I2C_SLAVE_ADDRESS 0x4 // Address of the slave
+#define I2C_SLAVE_ADDRESS 0x4 // Address of the slave, set by user
  
-#include <TinyWireS.h>
+#include <TinyWireS.h> //library needed
 
-const float zeroWindAdjustment =  .2; // negative numbers yield smaller wind speeds and vice versa.
+const float zeroWindAdjustment =  .2; // negative numbers yield smaller wind speeds and vice versa, adjust if necessary to reach 0mph at characterization
 
 int TMP_Therm_ADunits;  //temp termistor value from wind sensor
 float RV_Wind_ADunits;    //RV output from wind sensor 
@@ -21,7 +21,7 @@ void setup() {
 
 }
 
-void loop() {
+void loop() { //loop for probing the wind sensor; code based on wind sensor GitHub repos found online
   
   TMP_Therm_ADunits = analogRead(analogPinForTMP);
   RV_Wind_ADunits = analogRead(analogPinForRV);
@@ -36,7 +36,7 @@ void loop() {
 
 }
 
-void requestEvent()
+void requestEvent() //event to request the data as an integer wind speed
 {
 
   TinyWireS.send((int)WindSpeed_MPH);
