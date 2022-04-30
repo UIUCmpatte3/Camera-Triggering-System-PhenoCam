@@ -1,17 +1,17 @@
-#include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h> //libraries for operation
 #include <Wire.h>
 #include <MAX44009.h>
 
-#define LUX 0x4A
-#define MC 0x4
+#define LUX 0x4A //address of light sensor found via seperate I2C code for address determination
+#define MC 0x4 //defined address of microcontroller
 
 MAX44009 light;
 
 //const char* ssid     = "GP25763318";
 //const char* password = "2vT-bPS-TzK";
 
-const char* ssid     = "GalaxyA71";
-const char* password = "445testing";
+const char* ssid     = "GalaxyA71"; //can be changed to whichever Wi-Fi used
+const char* password = "445testing"; //the Wi-Fi open needs to be found via ESPWiFi file and AT commands
 
 int l;
 int w;
@@ -24,7 +24,7 @@ void setup() {
   Serial.begin(115200);
   delay(500);
 
-  if(light.begin())
+  if(light.begin()) //sanity check
   {
       Serial.println("Could not find a valid MAX44009 sensor, check wiring!");
       while(1);
@@ -50,7 +50,7 @@ void setup() {
   delay(5000);
   
   // Printing the ESP IP address
-  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.localIP()); //this is the IP used to access data
 }
 
 void loop() { 
@@ -63,7 +63,7 @@ void loop() {
 //  }
 //  delay(500);
   
-  Wire.requestFrom(LUX,1);
+  Wire.requestFrom(LUX,1); //requesting the lux value from sensor
   l = light.get_lux();
   delay(500);
   
@@ -79,7 +79,7 @@ void loop() {
             client.println("Content-Type: text/html");
             client.println("Connection: close");
             client.println();
-            // your actual web page that displays temperature and humidity
+            // your actual web page that displays data
             client.println("<!DOCTYPE HTML>");
             client.println("<html>");
             client.println("<head></head><body><h1>PhenoCam</h1><h3>Wind Speed: ");
