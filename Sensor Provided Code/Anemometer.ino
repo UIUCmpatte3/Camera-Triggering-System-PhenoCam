@@ -91,18 +91,18 @@ void loop() {
    WindSpeed_MPH =  pow(((RV_Wind_Volts - zeroWind_volts) /.2300) , 2.7265);   
    
     //Serial.print("  TMP volts ");
-    //Serial.print(TMP_Therm_ADunits * 0.0048828125);
+    //Serial.print(TMP_Therm_ADunits * 0.0048828125); TEMPERATURE IS NOT NEEDED
     
    // Serial.print(" RV volts ");
-    //Serial.print((float)RV_Wind_Volts);
+    //Serial.print((float)RV_Wind_Volts); RV RESULTANT IS NOT NEEDED
 
-   // Serial.print("\t  TempC*100 ");
+   // Serial.print("\t  TempC*100 "); 
     //Serial.print(TempCtimes100 );
 
     //Serial.print("   ZeroWind volts ");
     //Serial.print(zeroWind_volts);
 
-    Serial.print("   WindSpeed MPH ");
+    Serial.print("   WindSpeed MPH "); //Only this MPH speed is needed for the wind sensor
     Serial.println((float)WindSpeed_MPH);
     lastMillis = millis();    
   } 
